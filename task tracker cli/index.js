@@ -28,8 +28,10 @@ switch (command) {
       JSON.stringify({
         ...tasks,
         [id]: {
-          task: process.argv[3],
+          description: process.argv[3],
           status: 'todo',
+          createdAt: id,
+          updatedAt: null,
         },
       }),
       'utf-8'
@@ -45,7 +47,8 @@ switch (command) {
     break
   }
   case 'update': {
-    tasks[process.argv[3]].task = process.argv[4]
+    tasks[process.argv[3]].description = process.argv[4]
+    tasks[process.argv[3]].updatedAt = Date.now()
 
     await fs.writeFile(filePath, JSON.stringify(tasks), 'utf-8')
     console.log(`Updated task with (ID: ${process.argv[3]})`)
