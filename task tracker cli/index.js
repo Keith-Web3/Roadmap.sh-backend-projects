@@ -9,7 +9,9 @@ const generateId = function () {
 
 console.log(command)
 console.log(generateId())
-const filePath = path.join('./', 'tasks.json')
+const filePath = decodeURIComponent(
+  new URL('tasks.json', import.meta.url).pathname.slice(1)
+)
 
 // console.log(filePath)
 
