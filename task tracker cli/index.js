@@ -13,12 +13,6 @@ const filePath = decodeURIComponent(
   new URL('tasks.json', import.meta.url).pathname.slice(1)
 )
 
-// console.log(filePath)
-
-// const serializedTasks = await fs.readFile(filePath, 'utf-8')
-
-// console.log(serializedTasks)
-
 const serializedTasks = await fs.readFile(filePath, 'utf-8')
 
 const tasks = JSON.parse(serializedTasks)
