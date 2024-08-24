@@ -17,3 +17,7 @@ export const createJWT = function (user: User) {
 export const hashPassword = function (password) {
   return bcrypt.hash(password, 10)
 }
+
+export const comparePasswords = function (password, hash) {
+  return bcrypt.compare(password, hash)
+}
