@@ -1,11 +1,15 @@
 import express from 'express'
-import { body, validationResult } from 'express-validator'
+import { body } from 'express-validator'
+import { signup } from '../handlers/auth'
+import { validatePayload } from '../modules/middleware'
 
 const router = express.Router()
 
 const requiredFields = [body('email').isString(), body('password').isString()]
 
-router.post('/signup', requiredFields, () => {})
-router.post('/login', requiredFields, () => {})
+router.use(requiredFields, validatePayload)
+
+router.post('/signup', signup)
+router.post('/login', () => {})
 
 export default router
