@@ -2,6 +2,7 @@ import express from 'express'
 import morgan from 'morgan'
 
 import authRouter from './routes/auth'
+import blogRouter from './routes/blog'
 
 export const app = express()
 
@@ -15,3 +16,4 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/auth', authRouter)
+app.use('/api/blog', blogRouter)

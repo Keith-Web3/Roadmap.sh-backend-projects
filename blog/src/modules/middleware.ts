@@ -16,7 +16,7 @@ export const protect = async function (req, res, next) {
   const bearerToken = req.headers.authorization
 
   if (!bearerToken?.startsWith('Bearer')) {
-    res.status(400).json({ message: 'Invalid bearer token' })
+    res.status(401).json({ message: 'Invalid bearer token' })
     return
   }
 
@@ -27,7 +27,14 @@ export const protect = async function (req, res, next) {
     req.user = user
     next()
   } catch (err) {
-    console.log(err)
-    res.status(400).json({ message: 'Invalid bearer token' })
+    let message
+    console.log
+    if (err.name === 'TokenExpiredError') {
+      message = 'Token expired, please login again'
+    }
+    if (err.name === 'JsonWebTokenError') {
+      message = 'Invalid bearer token'
+    }
+    res.status(401).json({ message })
   }
 }

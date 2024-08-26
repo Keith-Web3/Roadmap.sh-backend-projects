@@ -1,4 +1,3 @@
-import { body } from 'express-validator'
 import prisma from '../db'
 import { comparePasswords, createJWT, hashPassword } from '../modules/utils'
 

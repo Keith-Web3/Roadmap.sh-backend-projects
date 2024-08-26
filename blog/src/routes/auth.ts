@@ -1,5 +1,6 @@
 import express from 'express'
 import { body } from 'express-validator'
+
 import { login, signup } from '../handlers/auth'
 import { validatePayload } from '../modules/middleware'
 

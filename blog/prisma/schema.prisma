@@ -27,9 +27,10 @@ model BlogPost {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   body      String
-  userId    String
-  user      User      @relation(references: [id], fields: [userId])
+  authorId  String
+  author    User      @relation(references: [id], fields: [authorId])
   Comment   Comment[]
+  @@unique([id, authorId])
 }
 
 model Comment {
