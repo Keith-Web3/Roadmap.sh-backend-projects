@@ -38,8 +38,9 @@ model Comment {
   comment   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  userId    String
-  user      User     @relation(references: [id], fields: [userId])
+  authorId    String
+  author      User     @relation(references: [id], fields: [authorId])
   blogId    String
   blogPost  BlogPost @relation(references: [id], fields: [blogId])
+  @@unique([id, authorId])
 }
